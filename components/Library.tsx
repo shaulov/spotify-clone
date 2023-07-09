@@ -1,7 +1,7 @@
 import { TbPlaylist } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-function Library () {
+function Library() {
   const handleClick = () => {
     // Handle upload later
   }

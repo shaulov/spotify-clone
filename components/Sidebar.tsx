@@ -62,8 +62,8 @@ function Sidebar({ children }: SidebarProps): JSX.Element {
           <Library />
         </Box>
       </nav>
-      <main className="flex-1 h-full py-2 overflow-y-auto">
-        {children}
+      <main className="flex-1 h-full py-2 pr-0 md:pr-2 overflow-y-auto">
+        <Box className="h-full">{children}</Box>
       </main>
     </div>
   );
