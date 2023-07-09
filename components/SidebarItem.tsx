@@ -21,7 +21,7 @@ function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps): JSX
       active && "text-white")}
 			href={href}
 		>
-      <Icon size={26} />
+      <Icon className="flex-shrink-0" size={24} />
 			<span className="w-full truncate">{label}</span>
 		</Link>
 	);
