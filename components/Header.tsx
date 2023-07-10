@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
+import Button from './Button';
 
 interface HeaderProps {
   children: ReactNode;
@@ -88,15 +89,34 @@ function Header({ children, className }: HeaderProps): JSX.Element {
         </div>
         <div
           className="
-            flex
+            grid
+            grid-cols-2
             justify-between
             items-center
             gap-x-4
           "
         >
-          
+          <Button
+            className="
+              font-medium
+              text-neutral-300
+              bg-transparent
+            "
+          >
+            Sign In
+          </Button>
+          <Button
+            className="
+              px-6 
+              py-2
+              bg-white
+            "
+          >
+            Log In
+          </Button>
         </div>
       </nav>
+      {children}
     </header>
   );
 }
