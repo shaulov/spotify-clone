@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
+import useAuthModal from '@/hooks/useAuthModal';
 import Button from './Button';
 
 interface HeaderProps {
@@ -14,6 +15,7 @@ interface HeaderProps {
 }
 
 function Header({ children, className }: HeaderProps): JSX.Element {
+  const authModal = useAuthModal();
   const router = useRouter();
 
   return (
@@ -102,8 +104,9 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               text-neutral-300
               bg-transparent
             "
+            onClick={authModal.onOpen}
           >
-            Sign In
+            Sign up
           </Button>
           <Button
             className="
@@ -111,8 +114,9 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               py-2
               bg-white
             "
+            onClick={authModal.onOpen}
           >
-            Log In
+            Log in
           </Button>
         </div>
       </nav>
