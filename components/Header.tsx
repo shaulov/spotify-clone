@@ -2,11 +2,17 @@
 
 import { ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { twMerge } from 'tailwind-merge';
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
+import { FaUserAlt } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
+import useAuthModal from '@/hooks/useAuthModal';
+import { useUser } from '@/hooks/useUser';
 import Button from './Button';
+import { AppRoute } from '@/const';
 
 interface HeaderProps {
   children: ReactNode;
@@ -14,7 +20,23 @@ interface HeaderProps {
 }
 
 function Header({ children, className }: HeaderProps): JSX.Element {
+  const authModal = useAuthModal();
   const router = useRouter();
+
+  const supabaseClient = useSupabaseClient();
+  const { user, subscription } = useUser();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    // TODO: reset any playing songs
+    router.refresh();
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success('Logged out!');
+    }
+  } 
 
   return (
     <header
@@ -88,32 +110,41 @@ function Header({ children, className }: HeaderProps): JSX.Element {
           </button>
         </div>
         <div
-          className="
-            grid
-            grid-cols-2
-            justify-between
-            items-center
-            gap-x-4
-          "
+          className="grid grid-flow-col justify-between items-center gap-x-4"
         >
-          <Button
-            className="
-              font-medium
-              text-neutral-300
-              bg-transparent
-            "
-          >
-            Sign In
-          </Button>
-          <Button
-            className="
-              px-6 
-              py-2
-              bg-white
-            "
-          >
-            Log In
-          </Button>
+          {user 
+          ? (
+            <>
+              <Button
+                className="px-6 py-2 bg-white"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+              <Button
+                className="bg-white"
+                onClick={() => router.push(AppRoute.Account)}
+              >
+                <FaUserAlt />
+              </Button>
+            </>
+          ) 
+          : (
+            <>
+              <Button
+                className="px-6 py-2 font-medium text-neutral-300 bg-transparent"
+                onClick={authModal.onOpen}
+              >
+                Sign up
+              </Button>
+              <Button
+                className="px-6 py-2 bg-white"
+                onClick={authModal.onOpen}
+              >
+                Log in
+              </Button>
+            </>
+          )}
         </div>
       </nav>
       {children}
