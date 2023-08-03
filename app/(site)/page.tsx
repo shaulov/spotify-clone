@@ -1,11 +1,12 @@
 import Header from '@/components/Header';
 import ListItem from '@/components/ListItem';
+import PageContent from './components/PageContent';
 import { AppRoute } from '@/const';
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
-      <Header>
+      <Header className="from-emerald-800">
         <h1 className="mb-2 text-3xl font-semibold">Welcome back</h1>
         <ul
           className="
@@ -31,9 +32,7 @@ export default function Home() {
             Newest songs
           </h2>
         </div>
-        <div>
-          List of Songs!
-        </div>
+        <PageContent />
       </section>
     </>
   )

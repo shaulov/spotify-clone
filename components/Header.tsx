@@ -43,7 +43,6 @@ function Header({ children, className }: HeaderProps): JSX.Element {
       className={twMerge(`
         h-fit p-6
         bg-gradient-to-b
-        from-emerald-800
         rounded-lg
       `,
       className)}

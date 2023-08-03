@@ -1,10 +1,18 @@
+'use client';
+
 import { TbPlaylist } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 import useAuthModal from '@/hooks/useAuthModal';
 import useUploadModal from '@/hooks/useUploadModal';
 import { useUser } from '@/hooks/useUser';
+import { Song } from '@/types';
+import MediaItem from './MediaItem';
 
-function Library() {
+interface LibraryProps {
+  songs: Song[];
+}
+
+function Library({ songs }: LibraryProps) {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
@@ -42,9 +50,13 @@ function Library() {
           <span className="sr-only">Add song to Library</span>
         </button>
       </div>
-      <div className="flex flex-col gap-y-2 mt-4 px-3">
-        List of Songs
-      </div>
+      <ul className="flex flex-col gap-y-2 mt-4 px-3">
+        {songs.map(song => (
+          <li key={song.id}>
+            <MediaItem data={song} onClick={()=> {}} />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
