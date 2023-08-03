@@ -6,6 +6,7 @@ async function PageContent() {
 
   return (
     <section className="mt-4">
+      <h2 className="sr-only">Song List</h2>
       <SongList data={songs} />
     </section>
   );

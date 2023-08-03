@@ -6,7 +6,7 @@ import { AppRoute } from '@/const';
 export default async function Home() {
   return (
     <>
-      <Header>
+      <Header className="from-emerald-800">
         <h1 className="mb-2 text-3xl font-semibold">Welcome back</h1>
         <ul
           className="
