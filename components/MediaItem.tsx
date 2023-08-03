@@ -16,6 +16,8 @@ function MediaItem({ data, onClick }: MediaItemProps) {
     if (onClick) {
       return onClick(data.id);
     }
+
+    // TODO: default turn on player
   }
 
   return (
@@ -42,7 +44,7 @@ function MediaItem({ data, onClick }: MediaItemProps) {
         <Image 
           className="object-cover" 
           src={imageUrl || '/images/liked.png'} 
-          fill 
+          width={48} height={48} 
           alt="Media item"
         />
       </div>
