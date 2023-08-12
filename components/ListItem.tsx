@@ -43,6 +43,8 @@ function ListItem({ image, name, href }: ListItemProps) {
         width={64} 
         height={64} 
         alt={name} 
+        placeholder="blur"
+        blurDataURL="/images/liked.png"
       />
       <p className="py-5 font-medium truncate">{name}</p>
       <div 

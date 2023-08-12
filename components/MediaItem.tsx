@@ -46,6 +46,8 @@ function MediaItem({ data, onClick }: MediaItemProps) {
           src={imageUrl || '/images/liked.png'} 
           width={48} height={48} 
           alt="Media item"
+          placeholder="blur"
+          blurDataURL="/images/liked.png"
         />
       </div>
     </article>

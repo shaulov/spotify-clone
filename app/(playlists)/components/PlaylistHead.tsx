@@ -27,6 +27,8 @@ function PlaylistHead({ title, image, className }: PlaylistHeadProps) {
         src={image}
         width={176} height={176} 
         alt={`Playlist ${title} cover`}
+        placeholder="blur"
+        blurDataURL="/images/liked.png"
       />
     </div>
   );
