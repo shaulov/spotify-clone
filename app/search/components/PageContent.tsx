@@ -1,6 +1,7 @@
 'use client';
 
 import MediaItem from "@/components/MediaItem";
+import LikeButton from "@/components/LikeButton";
 import { Song } from "@/types";
 
 interface PageContentProps {
@@ -18,9 +19,7 @@ function PageContent({ songs }: PageContentProps) {
               {songs.map(song => (
                 <li className="flex items-center gap-x-4 w-full" key={song.id}>
                   <MediaItem data={song} onClick={() => {}} />
-                  <button>
-                    <span className="sr-only">Like song</span>
-                  </button>
+                  <LikeButton songId={song.id} />
                 </li>
               ))}
             </ul>

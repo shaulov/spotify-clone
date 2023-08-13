@@ -34,6 +34,8 @@ function Song({ data }: SongProps) {
         width={388} height={388}
         alt="Song cover"
         priority={false}
+        placeholder="blur"
+        blurDataURL="/images/liked.png"
       />
       <div className="absolute right-5 bottom-24">
         <PlayButton />

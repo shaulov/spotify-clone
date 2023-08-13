@@ -93,6 +93,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               rounded-full
               hover:opacity-75
             "
+            onClick={() => router.push(AppRoute.Root)}
           >
             <HiHome className="text-black" size={20} />
           </button>
@@ -104,6 +105,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               rounded-full
               hover:opacity-75
             "
+            onClick={() => router.push(AppRoute.Search)}
           >
             <BiSearch className="text-black" size={20} />
           </button>
