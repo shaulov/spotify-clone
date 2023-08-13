@@ -1,14 +1,27 @@
 'use client';
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/hooks/useUser";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import { Song } from "@/types";
+import { AppRoute } from "@/const";
 
 interface PageContentProps {
   songs: Song[];
 }
 
 function PageContent({ songs }: PageContentProps) {
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace(AppRoute.Root);
+    }
+  }, [isLoading, user, router]);
+
   return (
     <section>
       <h2 className="sr-only">Song list</h2>
