@@ -1,15 +1,17 @@
 'use client';
 
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 
 interface MediaItemProps {
+  className?: string;
   data: Song;
   onClick: (id: string) => void;
 }
 
-function MediaItem({ data, onClick }: MediaItemProps) {
+function MediaItem({ className, data, onClick }: MediaItemProps) {
   const imageUrl = useLoadImage(data);
 
   const handleClick = () => {
@@ -22,13 +24,13 @@ function MediaItem({ data, onClick }: MediaItemProps) {
 
   return (
     <article
-      className="
+      className={twMerge(`
         grid grid-cols-[48px_auto] items-center gap-x-3
         w-full p-2
         rounded-md
         cursor-pointer
         hover:bg-neutral-800/50
-      "
+      `, className)}
     >
       <h3 className="text-white truncate">{data.title}</h3>
       <p className="text-sm text-neutral-400 truncate">{data.author}</p>
