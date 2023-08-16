@@ -25,6 +25,7 @@ function MediaItem({ className, data, onClick }: MediaItemProps) {
   return (
     <article
       className={twMerge(`
+        relative
         grid grid-cols-[48px_auto] items-center gap-x-3
         w-full p-2
         rounded-md
@@ -52,6 +53,9 @@ function MediaItem({ className, data, onClick }: MediaItemProps) {
           blurDataURL="/images/liked.png"
         />
       </div>
+      <button className="absolute top-0 left-0 w-full h-full" onClick={handleClick}>
+        <span className="sr-only">Play song</span>
+      </button>
     </article>
   );
 }

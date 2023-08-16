@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
+import useOnPlay from "@/hooks/useOnPlay";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import { Song } from "@/types";
@@ -15,6 +16,8 @@ interface PageContentProps {
 function PageContent({ songs }: PageContentProps) {
   const { user, isLoading } = useUser();
   const router = useRouter();
+
+  const onPlay = useOnPlay(songs);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -31,7 +34,7 @@ function PageContent({ songs }: PageContentProps) {
         : <ul className="flex flex-col gap-y-2 w-full px-6">
             {songs.map(song => (
               <li className="flex items-center gap-x-4 w-full" key={song.id}>
-                <MediaItem data={song} onClick={() => {}} />
+                <MediaItem data={song} onClick={(id:string) => onPlay(id)} />
                 <LikeButton songId={song.id} />
               </li>
             ))}
