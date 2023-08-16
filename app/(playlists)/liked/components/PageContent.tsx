@@ -31,9 +31,9 @@ function PageContent({ songs }: PageContentProps) {
         : <ul className="flex flex-col gap-y-2 w-full px-6">
             {songs.map(song => (
               <li className="flex items-center gap-x-4 w-full" key={song.id}>
-              <MediaItem data={song} onClick={() => {}} />
-              <LikeButton songId={song.id} />
-            </li>
+                <MediaItem data={song} onClick={() => {}} />
+                <LikeButton songId={song.id} />
+              </li>
             ))}
           </ul>
       }

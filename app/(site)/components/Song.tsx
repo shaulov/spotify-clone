@@ -37,7 +37,13 @@ function Song({ data, onClick }: SongProps) {
         placeholder="blur"
         blurDataURL="/images/liked.png"
       />
-      <PlayButton className="absolute right-5 bottom-24" onClick={() => onClick(data.id)} />
+      <PlayButton 
+        className="
+          absolute right-5 bottom-24
+          before:block
+        " 
+        onClick={() => onClick(data.id)} 
+      />
     </article>
   );
 }
