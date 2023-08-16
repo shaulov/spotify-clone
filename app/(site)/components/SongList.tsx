@@ -1,5 +1,6 @@
 'use client';
 
+import useOnPlay from "@/hooks/useOnPlay";
 import Song from "./Song";
 
 interface SongListProps {
@@ -7,6 +8,8 @@ interface SongListProps {
 }
 
 function SongList({ data }: SongListProps) {
+  const onPlay = useOnPlay(data);
+
   return (
     <>
       {data.length === 0 
@@ -19,7 +22,11 @@ function SongList({ data }: SongListProps) {
             "
           >
             {data.map(
-              song => <li key={song.id}><Song data={song} onClick={() => console.log('render')} /></li>
+              (song) => (
+                <li key={song.id}>
+                  <Song data={song} onClick={(id: string) => onPlay(id)} />
+                </li>
+              )
             )}
           </ul>
       }

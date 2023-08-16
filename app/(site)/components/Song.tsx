@@ -7,10 +7,10 @@ import PlayButton from "@/components/PlayButton";
 
 interface SongProps {
   data: Song;
-  onClick: () => void;
+  onClick: (id: string) => void;
 }
 
-function Song({ data }: SongProps) {
+function Song({ data, onClick }: SongProps) {
   const imagePath = useLoadImage(data);
 
   return (
@@ -37,9 +37,13 @@ function Song({ data }: SongProps) {
         placeholder="blur"
         blurDataURL="/images/liked.png"
       />
-      <div className="absolute right-5 bottom-24">
-        <PlayButton />
-      </div>
+      <PlayButton 
+        className="
+          absolute right-5 bottom-24
+          before:block
+        " 
+        onClick={() => onClick(data.id)} 
+      />
     </article>
   );
 }
