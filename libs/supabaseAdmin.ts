@@ -53,7 +53,7 @@ const upsertPriceRecord = async (price: Stripe.Price) => {
   console.log(`Price inserted/updated: ${price.id}`);
 };
 
-const createOrRetriveCustomer = async (
+const createOrRetrieveCustomer = async (
   { email, uuid }: { email: string, uuid: string }
 ) => {
   const { data, error } = await supabaseAdmin
@@ -62,7 +62,7 @@ const createOrRetriveCustomer = async (
     .eq('id', uuid)
     .single();
 
-  if (error || data?.stripe_customer_id) {
+  if (error || !data?.stripe_customer_id) {
     const customerData: { metadata: { supabaseUUID: string }; email?: string } = {
       metadata: {
         supabaseUUID: uuid,
@@ -168,6 +168,6 @@ const manageSubscriptionStatusChange = async (
 export {
   upsertProductRecord,
   upsertPriceRecord,
-  createOrRetriveCustomer,
+  createOrRetrieveCustomer,
   manageSubscriptionStatusChange
 };
