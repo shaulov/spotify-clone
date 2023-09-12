@@ -7,4 +7,5 @@ export enum AppRoutes {
 
 export enum ApiRoutes {
   CreateCheckoutSession = '/api/create-checkout-session',
+  CreatePortalLink = '/api/create-portal-link',
 }
