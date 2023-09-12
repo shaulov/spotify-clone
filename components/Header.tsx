@@ -10,6 +10,7 @@ import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import useAuthModal from '@/hooks/useAuthModal';
+import usePlayer from '@/hooks/usePlayer';
 import { useUser } from '@/hooks/useUser';
 import Button from './Button';
 import { AppRoutes } from '@/const';
@@ -20,6 +21,7 @@ interface HeaderProps {
 }
 
 function Header({ children, className }: HeaderProps): JSX.Element {
+  const player = usePlayer();
   const authModal = useAuthModal();
   const router = useRouter();
 
@@ -28,7 +30,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    // TODO: reset any playing songs
+    player.reset();
     router.refresh();
 
     if (error) {
