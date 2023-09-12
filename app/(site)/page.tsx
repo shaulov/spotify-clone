@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import ListItem from '@/components/ListItem';
 import PageContent from './components/PageContent';
-import { AppRoute } from '@/const';
+import { AppRoutes } from '@/const';
 
 export default async function Home() {
   return (
@@ -21,7 +21,7 @@ export default async function Home() {
             <ListItem 
               image="/images/liked.png"
               name="Liked Songs"
-              href={AppRoute.Liked}
+              href={AppRoutes.Liked}
             />
           </li>
         </ul>
