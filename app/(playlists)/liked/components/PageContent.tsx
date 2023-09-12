@@ -7,7 +7,7 @@ import useOnPlay from "@/hooks/useOnPlay";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import { Song } from "@/types";
-import { AppRoute } from "@/const";
+import { AppRoutes } from "@/const";
 
 interface PageContentProps {
   songs: Song[];
@@ -21,7 +21,7 @@ function PageContent({ songs }: PageContentProps) {
 
   useEffect(() => {
     if (!isLoading && !user) {
-      router.replace(AppRoute.Root);
+      router.replace(AppRoutes.Root);
     }
   }, [isLoading, user, router]);
 

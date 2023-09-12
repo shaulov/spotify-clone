@@ -10,9 +10,10 @@ import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import useAuthModal from '@/hooks/useAuthModal';
+import usePlayer from '@/hooks/usePlayer';
 import { useUser } from '@/hooks/useUser';
 import Button from './Button';
-import { AppRoute } from '@/const';
+import { AppRoutes } from '@/const';
 
 interface HeaderProps {
   children: ReactNode;
@@ -20,6 +21,7 @@ interface HeaderProps {
 }
 
 function Header({ children, className }: HeaderProps): JSX.Element {
+  const player = usePlayer();
   const authModal = useAuthModal();
   const router = useRouter();
 
@@ -28,7 +30,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    // TODO: reset any playing songs
+    player.reset();
     router.refresh();
 
     if (error) {
@@ -93,7 +95,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               rounded-full
               hover:opacity-75
             "
-            onClick={() => router.push(AppRoute.Root)}
+            onClick={() => router.push(AppRoutes.Root)}
           >
             <HiHome className="text-black" size={20} />
           </button>
@@ -105,7 +107,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               rounded-full
               hover:opacity-75
             "
-            onClick={() => router.push(AppRoute.Search)}
+            onClick={() => router.push(AppRoutes.Search)}
           >
             <BiSearch className="text-black" size={20} />
           </button>
@@ -124,7 +126,7 @@ function Header({ children, className }: HeaderProps): JSX.Element {
               </Button>
               <Button
                 className="bg-white"
-                onClick={() => router.push(AppRoute.Account)}
+                onClick={() => router.push(AppRoutes.Account)}
               >
                 <FaUserAlt />
               </Button>
