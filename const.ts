@@ -1,4 +1,4 @@
-export enum AppRoutess {
+export enum AppRoutes {
   Root = '/',
   Search = 'search',
   Liked = 'liked',

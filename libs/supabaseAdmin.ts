@@ -125,7 +125,7 @@ const manageSubscriptionStatusChange = async (
   const subscription = await stripe.subscriptions.retrieve(
     subscriptionId,
     {
-      expand: ["defauld_payment_method"]
+      expand: ["default_payment_method"]
     }
   );
 
